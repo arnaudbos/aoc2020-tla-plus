@@ -1,0 +1,7 @@
+Day*.old
+Day*.out
+Day*.toolbox/*_SnapShot_*
+Day*.toolbox/*/*-*-*-*-*-*/*
+Day*.toolbox/*/MC.out
+Day*.toolbox/*/MC_TE.out
+Day*/states
