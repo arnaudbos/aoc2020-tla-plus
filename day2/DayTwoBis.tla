@@ -1,18 +1,15 @@
 ---- MODULE DayTwoBis ----
-EXTENDS InputHelper, Integers, Sequences, TLC, FiniteSets
+EXTENDS DayTwoParser, InputHelper, Integers, Sequences, TLC, FiniteSets
 
 CONSTANT Input
 
-S == {Input[i] : i \in DOMAIN Input}
-
-CharAt(password, index) ==
-    SubString(password, index, index)
+S == {ParseEntry(Input[i]) : i \in DOMAIN Input}
 
 ValidPassword(entry) ==
-    LET min == LowestNumberOfTimes(entry)
-        max == HighestNumberOfTimes(entry)
-        letter == Letter(entry)
-        password == Password(entry)
+    LET min == entry.min
+        max == entry.max
+        letter == entry.letter
+        password == entry.password
     IN \/ /\ CharAt(password, min) = letter
           /\ CharAt(password, max) # letter
        \/ /\ CharAt(password, min) # letter
@@ -22,16 +19,12 @@ ASSUME Assumptions ==
     \* No dups in input
     /\ Len(Input) = Cardinality(S)
     \* Input well formed
-    /\ \A entryIdx \in DOMAIN Input :
-        LET entry == Input[entryIdx]
-        IN /\ Len(Password(entry)) > 0
-           /\ Len(Letter(entry)) = 1
-           /\ LowestNumberOfTimes(entry) > 0
-           /\ HighestNumberOfTimes(entry) > 0
+    /\ \A entry \in S :
+        /\ entry.min > 0
+        /\ entry.max > 0
     \* At least one valid password
-    /\ \E entryIdx \in DOMAIN Input :
-        LET entry == Input[entryIdx]
-        IN ValidPassword(entry)
+    /\ \E entry \in S :
+        ValidPassword(entry)
 
 VARIABLE valid
 
