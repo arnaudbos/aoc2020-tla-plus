@@ -1,11 +1,12 @@
 (ns tlc2.overrides
   (:import [tlc2.overrides DayTwoParser
-                           DayThreeParser]))
+                           DayThreeParser
+                           DayFourParser]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                            ;;
 ;;              ----==|🎄 Advent Of Code 2020 Parsers 🎄|==----                ;;
-;;              ----==|🎄        TLC Overrides        🎄|==----                ;;
+;;              ----==|🎄        TLC OVERRIDES       🎄|==----                ;;
 ;;                                                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -20,4 +21,4 @@
 (defn overrides-get [_]
   (into-array Class [DayTwoParser
                      DayThreeParser
-                     ]))
+                     DayFourParser]))

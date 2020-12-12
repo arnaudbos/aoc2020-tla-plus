@@ -5,13 +5,14 @@
                             BoolValue
                             RecordValue
                             Value
-                            TupleValue]
-           [clojure.lang Keyword]
-           [util UniqueString]))
+                            TupleValue
+                            SetEnumValue]
+           [util UniqueString]
+           [clojure.lang PersistentHashSet]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                            ;;
-;;                        ----==| TLA+ Utils |==----                          ;;
+;;                        ----==| TLA+ UTILS |==----                          ;;
 ;;                                                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -20,12 +21,19 @@
 (defmethod convert String [s] (StringValue. ^String s))
 (defmethod convert IntValue [value] (.val value))
 (defmethod convert Integer [i] (IntValue/gen i))
-(defmethod convert Keyword [k] (-> k name UniqueString/uniqueStringOf))
 (defmethod convert Boolean [b] (BoolValue. b))
+(defmethod convert TupleValue [value] (.getElems value))
+(defmethod convert SetEnumValue [value] (let [elems (.-elems value)
+                                              arr (make-array Value (.capacity elems))]
+                                          (.copyInto elems arr)
+                                          (set arr)))
+(defmethod convert PersistentHashSet [s] (SetEnumValue. ^"[Ltlc2.value.impl.Value;"
+                                           (into-array Value s)
+                                           true))
 
 (defn record-keys [ks]
   (->> ks
-    (map convert)
+    (map #(-> % name UniqueString/uniqueStringOf))
     (into-array UniqueString)))
 
 (defn record [m]

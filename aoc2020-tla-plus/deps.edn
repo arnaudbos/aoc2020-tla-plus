@@ -1,18 +1,19 @@
 {:paths ["src"]
- :deps {lambdaisland/regal {:mvn/version "0.0.89"}}
+ :deps {lambdaisland/regal {:mvn/version "0.0.89"}
+        org.clojure/spec.alpha {:mvn/version "0.2.187"}}
  :aliases {:local
            {:extra-deps {tlatoolbox/tla2tools {:local/root "tlc/tla2tools.jar"}}}
            :compile
-           {:main-opts ["-e" "(compile,'aoc)"]
+           {:main-opts ["-e" "(compile,'aoc)"]}
             ;=> clj -M:local:compile -M
-            }
+
            :dev
            {:extra-paths ["classes"]}
            :jar
            {:extra-deps {seancorfield/depstar {:mvn/version "RELEASE"}}
             :main-opts ["-e" "(compile,'tlc2.overrides)"
-                        "-m" "hf.depstar.jar" "target/aoc2020.jar"
-                        ]
+                        "-m" "hf.depstar.jar" "target/aoc2020.jar"]}}}
+
             ;=> clj -M:local:dev:jar
-            }}
- }
+
+
