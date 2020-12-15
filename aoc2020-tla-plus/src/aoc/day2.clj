@@ -3,12 +3,10 @@
             [tlc2.values :as values]))
 
 (defn parse [s]
-  (let [m (impl/parse (values/convert s))
-        m {:min (-> m :min values/convert)
-           :max (-> m :max values/convert)
-           :letter (-> m :letter values/convert)
-           :password (-> m :password values/convert)}]
-    (values/record m)))
+  (-> s
+    values/convert
+    impl/parse
+    values/convert))
 
 (defn count-occurrences [s c]
   (let [s (values/convert s)

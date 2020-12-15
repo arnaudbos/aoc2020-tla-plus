@@ -1,7 +1,8 @@
 (ns tlc2.overrides
   (:import [tlc2.overrides DayTwoParser
                            DayThreeParser
-                           DayFourParser]))
+                           DayFourParser
+                           DayFiveParser]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                            ;;
@@ -21,4 +22,5 @@
 (defn overrides-get [_]
   (into-array Class [DayTwoParser
                      DayThreeParser
-                     DayFourParser]))
+                     DayFourParser
+                     DayFiveParser]))

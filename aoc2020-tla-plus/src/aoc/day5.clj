@@ -1,5 +1,5 @@
-(ns aoc.day3
-  (:require [aoc.day3.impl :as impl]
+(ns aoc.day5
+  (:require [aoc.day5.impl :as impl]
             [tlc2.values :as values]))
 
 (defn valid? [s]
@@ -8,8 +8,9 @@
     impl/valid?
     values/convert))
 
-(defn parse [row]
-  (->> row
+(defn parse [seat]
+  (->>
+    seat
     values/convert
     impl/parse
     values/convert))

@@ -10,8 +10,6 @@
 ;(valid? "..#....#..#...#...##.#........f")
 
 (defn parse [row]
-  (->>
-    row
-    (map truth-value)))
+  (map truth-value row))
 
-;(transform "..#....#..#...#...##.#.........")
+;(parse "..#....#..#...#...##.#.........")

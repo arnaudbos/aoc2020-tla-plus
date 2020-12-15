@@ -1,7 +1,8 @@
 (ns aoc
   (:require [aoc.day2 :as day2]
             [aoc.day3 :as day3]
-            [aoc.day4 :as day4]))
+            [aoc.day4 :as day4]
+            [aoc.day5 :as day5]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                            ;;
@@ -56,14 +57,14 @@
             ^{:static true}
             [^{tlc2.overrides.TLAPlusOperator {:identifier "ParseRow"
                                                :module     "DayThreeParser"}}
-             parse [tlc2.value.impl.StringValue] tlc2.value.impl.TupleValue]])
+             parseRow [tlc2.value.impl.StringValue] tlc2.value.impl.TupleValue]])
 
 
 
 (defn day3-validRow [s]
   (day3/valid? s))
 
-(defn day3-parse [s]
+(defn day3-parseRow [s]
   (day3/parse s))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -80,7 +81,7 @@
   :methods [^{:static true}
             [^{tlc2.overrides.TLAPlusOperator {:identifier "ParseRows"
                                                :module     "DayFourParser"}}
-             parse [tlc2.value.impl.TupleValue] tlc2.value.impl.TupleValue]
+             parsePassport [tlc2.value.impl.TupleValue] tlc2.value.impl.TupleValue]
             ^{:static true}
             [^{tlc2.overrides.TLAPlusOperator {:identifier "ValidByr"
                                                :module     "DayFourParser"}}
@@ -114,7 +115,7 @@
                                                :module     "DayFourParser"}}
              validCid [tlc2.value.impl.StringValue] tlc2.value.impl.BoolValue]])
 
-(defn day4-parse [s]
+(defn day4-parsePassport [s]
   (day4/parse s))
 
 (defn day4-validByr [s]
@@ -140,3 +141,29 @@
 
 (defn day4-validCid [s]
   (day4/valid-cid? s))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                            ;;
+;;              ----==|🎄 Advent Of Code 2020 Parsers 🎄|==----                ;;
+;;              ----==|🎄            DAY 5            🎄|==----                ;;
+;;                                                                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(gen-class
+  :name tlc2.overrides.DayFiveParser
+  :prefix "day5-"
+  :main false
+  :methods [^{:static true}
+            [^{tlc2.overrides.TLAPlusOperator {:identifier "ValidSeat"
+                                               :module     "DayFiveParser"}}
+             validSeat [tlc2.value.impl.StringValue] tlc2.value.impl.BoolValue]
+            ^{:static true}
+            [^{tlc2.overrides.TLAPlusOperator {:identifier "ParseSeat"
+                                               :module     "DayFiveParser"}}
+             parseSeat [tlc2.value.impl.StringValue] tlc2.value.impl.TupleValue]])
+
+(defn day5-validSeat [s]
+  (day5/valid? s))
+
+(defn day5-parseSeat [s]
+  (day5/parse s))
